@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -18,6 +19,8 @@ class DefaultController extends AbstractController
      */
     public function indexAction()
     {
-        return $this->render('default.html.twig');
+        $session = new Session();
+
+        return $this->render('default.html.twig', ['foo' => $session->get('bar')]);
     }
 }
